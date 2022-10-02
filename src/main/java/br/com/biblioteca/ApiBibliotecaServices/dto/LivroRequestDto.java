@@ -11,6 +11,12 @@ public class LivroRequestDto {
 
     private String nome;
 
+    private String autor;
+
+    private Integer edicao;
+
+    private Integer volume;
+
     private String descricao;
 
 }
