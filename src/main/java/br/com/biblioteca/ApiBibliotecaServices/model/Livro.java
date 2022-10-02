@@ -17,6 +17,15 @@ public class Livro {
     @Column(name = "nome", nullable = false)
     private String nome;
 
+    @Column(name = "autor", nullable = false)
+    private String autor;
+
+    @Column(name = "edicao", nullable = false)
+    private Integer edicao;
+
+    @Column(name = "volume", nullable = false)
+    private Integer volume;
+
     @Column(name = "descricao", nullable = false)
     private String descricao;
 

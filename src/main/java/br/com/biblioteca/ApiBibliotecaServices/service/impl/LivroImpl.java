@@ -30,6 +30,9 @@ public class LivroImpl implements LivroService {
         if (livro.isPresent()) {
             livroResponseDto.setId(livro.get().getId());
             livroResponseDto.setNome(livro.get().getNome());
+            livroResponseDto.setAutor(livro.get().getAutor());
+            livroResponseDto.setEdicao(livro.get().getEdicao());
+            livroResponseDto.setVolume(livro.get().getVolume());
             livroResponseDto.setDescricao(livro.get().getDescricao());
         }
 
@@ -40,6 +43,9 @@ public class LivroImpl implements LivroService {
 
         Livro livro = new Livro();
         livro.setNome(livroRequestDto.getNome());
+        livro.setAutor(livroRequestDto.getAutor());
+        livro.setEdicao(livroRequestDto.getEdicao());
+        livro.setVolume(livroRequestDto.getVolume());
         livro.setDescricao(livroRequestDto.getDescricao());
 
         Livro livroSaved = livroRepository.save(livro);
@@ -47,6 +53,9 @@ public class LivroImpl implements LivroService {
         LivroResponseDto livroResponseDto = new LivroResponseDto();
         livroResponseDto.setId(livroSaved.getId());
         livroResponseDto.setNome(livroSaved.getNome());
+        livroResponseDto.setAutor(livroSaved.getAutor());
+        livroResponseDto.setEdicao(livroSaved.getEdicao());
+        livroResponseDto.setVolume(livroSaved.getVolume());
         livroResponseDto.setDescricao(livroSaved.getDescricao());
 
         return livroResponseDto;
@@ -57,6 +66,9 @@ public class LivroImpl implements LivroService {
         Livro livro = livroRepository.findById(id).get();
 
         livro.setNome(livroRequestDto.getNome());
+        livro.setAutor(livroRequestDto.getAutor());
+        livro.setEdicao(livroRequestDto.getEdicao());
+        livro.setVolume(livroRequestDto.getVolume());
         livro.setDescricao(livroRequestDto.getDescricao());
 
         Livro livroSaved = livroRepository.save(livro);
@@ -64,6 +76,9 @@ public class LivroImpl implements LivroService {
         LivroResponseDto livroResponseDto = new LivroResponseDto();
         livroResponseDto.setId(livroSaved.getId());
         livroResponseDto.setNome(livroSaved.getNome());
+        livroResponseDto.setAutor(livroSaved.getAutor());
+        livroResponseDto.setEdicao(livroSaved.getEdicao());
+        livroResponseDto.setVolume(livroSaved.getVolume());
         livroResponseDto.setDescricao(livroSaved.getDescricao());
 
         return livroResponseDto;
