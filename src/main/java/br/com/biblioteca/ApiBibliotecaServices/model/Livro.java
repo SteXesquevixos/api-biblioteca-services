@@ -29,4 +29,7 @@ public class Livro {
     @Column(name = "descricao", nullable = false)
     private String descricao;
 
+    @Column(name = "estudante_fk", nullable = false)
+    private Long estudante;
+
 }

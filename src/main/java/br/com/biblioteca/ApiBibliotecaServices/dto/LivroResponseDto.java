@@ -21,4 +21,6 @@ public class LivroResponseDto {
 
     private String descricao;
 
+    private Long estudante;
+
 }
