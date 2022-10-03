@@ -29,7 +29,9 @@ public class Livro {
     @Column(name = "descricao", nullable = false)
     private String descricao;
 
-    @Column(name = "estudante_fk", nullable = false)
-    private Long estudante;
+//    @Column(name = "estudante_fk", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "estudante_fk", referencedColumnName = "id")
+    private Estudante estudante;
 
 }
