@@ -34,6 +34,7 @@ public class LivroImpl implements LivroService {
             livroResponseDto.setEdicao(livro.get().getEdicao());
             livroResponseDto.setVolume(livro.get().getVolume());
             livroResponseDto.setDescricao(livro.get().getDescricao());
+            livroResponseDto.setEstudante(livro.get().getEstudante());
         }
 
         return livroResponseDto;
@@ -47,6 +48,7 @@ public class LivroImpl implements LivroService {
         livro.setEdicao(livroRequestDto.getEdicao());
         livro.setVolume(livroRequestDto.getVolume());
         livro.setDescricao(livroRequestDto.getDescricao());
+        livro.setEstudante(livroRequestDto.getEstudante());
 
         Livro livroSaved = livroRepository.save(livro);
 
@@ -57,6 +59,7 @@ public class LivroImpl implements LivroService {
         livroResponseDto.setEdicao(livroSaved.getEdicao());
         livroResponseDto.setVolume(livroSaved.getVolume());
         livroResponseDto.setDescricao(livroSaved.getDescricao());
+        livroResponseDto.setEstudante(livroSaved.getEstudante());
 
         return livroResponseDto;
     }
@@ -70,6 +73,7 @@ public class LivroImpl implements LivroService {
         livro.setEdicao(livroRequestDto.getEdicao());
         livro.setVolume(livroRequestDto.getVolume());
         livro.setDescricao(livroRequestDto.getDescricao());
+        livro.setEstudante(livroRequestDto.getEstudante());
 
         Livro livroSaved = livroRepository.save(livro);
 
@@ -80,6 +84,7 @@ public class LivroImpl implements LivroService {
         livroResponseDto.setEdicao(livroSaved.getEdicao());
         livroResponseDto.setVolume(livroSaved.getVolume());
         livroResponseDto.setDescricao(livroSaved.getDescricao());
+        livroResponseDto.setEstudante(livroSaved.getEstudante());
 
         return livroResponseDto;
     }
