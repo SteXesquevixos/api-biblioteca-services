@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface LivroService {
 
-    List<Livro> getTodosLivros();
+    List<LivroResponseDto> getTodosLivros();
 
     LivroResponseDto getLivroById(Long id);
 

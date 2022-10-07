@@ -1,10 +1,16 @@
 package br.com.biblioteca.ApiBibliotecaServices.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "livros")
 public class Livro {
@@ -30,6 +36,7 @@ public class Livro {
     private String descricao;
 
 //    @Column(name = "estudante_fk", nullable = false)
+
     @OneToOne
     @JoinColumn(name = "estudante_fk", referencedColumnName = "id")
     private Estudante estudante;

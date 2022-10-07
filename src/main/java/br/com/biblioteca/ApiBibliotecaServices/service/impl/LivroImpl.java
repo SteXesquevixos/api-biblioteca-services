@@ -1,5 +1,7 @@
 package br.com.biblioteca.ApiBibliotecaServices.service.impl;
 
+import br.com.biblioteca.ApiBibliotecaServices.coverter.ListLivroToListLivroResponseDto;
+import br.com.biblioteca.ApiBibliotecaServices.coverter.LivroToLivroResponseDto;
 import br.com.biblioteca.ApiBibliotecaServices.dto.LivroRequestDto;
 import br.com.biblioteca.ApiBibliotecaServices.dto.LivroResponseDto;
 import br.com.biblioteca.ApiBibliotecaServices.model.Livro;
@@ -17,27 +19,21 @@ public class LivroImpl implements LivroService {
     @Autowired
     private LivroRepository livroRepository;
 
-    public List<Livro> getTodosLivros() {
-        return livroRepository.findAll();
+    @Autowired
+    private ListLivroToListLivroResponseDto listLivroToListLivroResponseDto;
+
+    @Autowired
+    private LivroToLivroResponseDto livroToLivroResponseDto;
+
+    public List<LivroResponseDto> getTodosLivros() {
+        List<Livro> livros = livroRepository.findAll();
+        return listLivroToListLivroResponseDto.convert(livros);
     }
 
     @Override
     public LivroResponseDto getLivroById(Long id) {
-
-        LivroResponseDto livroResponseDto = new LivroResponseDto();
         Optional<Livro> livro = livroRepository.findById(id);
-
-        if (livro.isPresent()) {
-            livroResponseDto.setId(livro.get().getId());
-            livroResponseDto.setNome(livro.get().getNome());
-            livroResponseDto.setAutor(livro.get().getAutor());
-            livroResponseDto.setEdicao(livro.get().getEdicao());
-            livroResponseDto.setVolume(livro.get().getVolume());
-            livroResponseDto.setDescricao(livro.get().getDescricao());
-//            livroResponseDto.setEstudante(livro.get().getEstudante());
-        }
-
-        return livroResponseDto;
+        return livroToLivroResponseDto.convert(livro.get());
     }
 
     public LivroResponseDto addLivro(LivroRequestDto livroRequestDto) {
@@ -52,16 +48,7 @@ public class LivroImpl implements LivroService {
 
         Livro livroSaved = livroRepository.save(livro);
 
-        LivroResponseDto livroResponseDto = new LivroResponseDto();
-        livroResponseDto.setId(livroSaved.getId());
-        livroResponseDto.setNome(livroSaved.getNome());
-        livroResponseDto.setAutor(livroSaved.getAutor());
-        livroResponseDto.setEdicao(livroSaved.getEdicao());
-        livroResponseDto.setVolume(livroSaved.getVolume());
-        livroResponseDto.setDescricao(livroSaved.getDescricao());
-//        livroResponseDto.setEstudante(livroSaved.getEstudante());
-
-        return livroResponseDto;
+        return livroToLivroResponseDto.convert(livroSaved);
     }
 
     public LivroResponseDto updateLivro(Long id, LivroRequestDto livroRequestDto) {
@@ -77,16 +64,7 @@ public class LivroImpl implements LivroService {
 
         Livro livroSaved = livroRepository.save(livro);
 
-        LivroResponseDto livroResponseDto = new LivroResponseDto();
-        livroResponseDto.setId(livroSaved.getId());
-        livroResponseDto.setNome(livroSaved.getNome());
-        livroResponseDto.setAutor(livroSaved.getAutor());
-        livroResponseDto.setEdicao(livroSaved.getEdicao());
-        livroResponseDto.setVolume(livroSaved.getVolume());
-        livroResponseDto.setDescricao(livroSaved.getDescricao());
-//        livroResponseDto.setEstudante(livroSaved.getEstudante());
-
-        return livroResponseDto;
+        return livroToLivroResponseDto.convert(livroSaved);
     }
 
     public void deleteLivro(Long id) {

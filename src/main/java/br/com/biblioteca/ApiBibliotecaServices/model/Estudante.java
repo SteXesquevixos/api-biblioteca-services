@@ -1,10 +1,16 @@
 package br.com.biblioteca.ApiBibliotecaServices.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "estudantes")
 public class Estudante {
@@ -22,5 +28,8 @@ public class Estudante {
 
     @Column(name = "numero_matricula", nullable = false)
     private Long numeroMatricula;
+
+    @OneToOne(mappedBy = "estudante")
+    private Livro livro;
 
 }

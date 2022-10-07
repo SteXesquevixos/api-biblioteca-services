@@ -20,10 +20,9 @@ public class LivroController {
     private LivroService livroService;
 
     @RequestMapping(value = "/livros", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Livro>> getTodosLivros() {
+    public ResponseEntity<List<LivroResponseDto>> getTodosLivros() {
 
-        List<Livro> livros = livroService.getTodosLivros();
-        return ResponseEntity.ok(livros);
+        return ResponseEntity.ok(livroService.getTodosLivros());
     }
 
     @RequestMapping(value = "/livros/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
