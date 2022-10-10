@@ -1,5 +1,6 @@
 package br.com.biblioteca.ApiBibliotecaServices.coverter;
 
+import br.com.biblioteca.ApiBibliotecaServices.dto.EstudanteResponseDto;
 import br.com.biblioteca.ApiBibliotecaServices.dto.LivroResponseDto;
 import br.com.biblioteca.ApiBibliotecaServices.model.Livro;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LivroToLivroResponseDto implements Converter<Livro, LivroResponseDto> {
-
-    @Autowired
-    private EstudanteToEstudanteResponseDto estudanteToEstudanteResponseDto;
 
     @Override
     public LivroResponseDto convert(Livro livro) {
@@ -21,7 +19,13 @@ public class LivroToLivroResponseDto implements Converter<Livro, LivroResponseDt
                 .edicao(livro.getEdicao())
                 .volume(livro.getVolume())
                 .autor(livro.getAutor())
-                .estudante(estudanteToEstudanteResponseDto.convert(livro.getEstudante()))
+                .estudante(EstudanteResponseDto.builder()
+                        .id(livro.getEstudante().getId())
+                        .nome(livro.getEstudante().getNome())
+                        .curso(livro.getEstudante().getCurso())
+                        .numeroMatricula(livro.getEstudante().getNumeroMatricula())
+                        .build()
+                )
                 .build();
     }
 }

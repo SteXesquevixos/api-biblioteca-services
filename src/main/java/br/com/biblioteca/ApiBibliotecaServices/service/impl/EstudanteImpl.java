@@ -7,6 +7,7 @@ import br.com.biblioteca.ApiBibliotecaServices.dto.EstudanteResponseDto;
 import br.com.biblioteca.ApiBibliotecaServices.model.Estudante;
 import br.com.biblioteca.ApiBibliotecaServices.repository.EstudanteRepository;
 import br.com.biblioteca.ApiBibliotecaServices.service.EstudanteService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,9 @@ public class EstudanteImpl implements EstudanteService {
 
     @Autowired
     private ListEstudanteToListEstudanteResponseDto listEstudanteToListEstudanteResponseDto;
+
+
+    private ModelMapper modelMapper = new ModelMapper();
 
     @Autowired
     private EstudanteToEstudanteResponseDto estudanteToEstudanteResponseDto;
@@ -38,10 +42,12 @@ public class EstudanteImpl implements EstudanteService {
 
     public EstudanteResponseDto addEstudante(EstudanteRequestDto estudanteRequestDto) {
 
-        Estudante estudante = new Estudante();
-        estudante.setNome(estudanteRequestDto.getNome());
-        estudante.setCurso(estudanteRequestDto.getCurso());
-        estudante.setNumeroMatricula(estudanteRequestDto.getNumeroMatricula());
+//        Estudante estudante = new Estudante();
+//        estudante.setNome(estudanteRequestDto.getNome());
+//        estudante.setCurso(estudanteRequestDto.getCurso());
+//        estudante.setNumeroMatricula(estudanteRequestDto.getNumeroMatricula());
+
+        Estudante estudante =  modelMapper.map(estudanteRequestDto, Estudante.class);
 
         Estudante estudanteSaved = estudanteRepository.save(estudante);
 
