@@ -4,6 +4,7 @@ import br.com.biblioteca.ApiBibliotecaServices.dto.EstudanteResponseDto;
 import br.com.biblioteca.ApiBibliotecaServices.dto.LivroResponseDto;
 import br.com.biblioteca.ApiBibliotecaServices.model.Estudante;
 import br.com.biblioteca.ApiBibliotecaServices.model.Livro;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 

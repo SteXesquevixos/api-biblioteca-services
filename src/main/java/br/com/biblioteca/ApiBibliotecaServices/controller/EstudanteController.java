@@ -20,10 +20,8 @@ public class EstudanteController {
     private EstudanteService estudanteService;
 
     @RequestMapping(value = "/estudantes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Estudante>> getTodosEstudantes() {
-
-        List<Estudante> estudantes = estudanteService.getTodosEstudantes();
-        return ResponseEntity.ok(estudantes);
+    public ResponseEntity<List<EstudanteResponseDto>> getTodosEstudantes() {
+        return ResponseEntity.ok(estudanteService.getTodosEstudantes());
     }
 
     @RequestMapping(value = "/estudantes/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

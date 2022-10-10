@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface EstudanteService {
 
-    List<Estudante> getTodosEstudantes();
+    List<EstudanteResponseDto> getTodosEstudantes();
 
     EstudanteResponseDto getEstudanteById(Long id);
 

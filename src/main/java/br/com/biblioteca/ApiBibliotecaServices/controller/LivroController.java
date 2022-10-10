@@ -21,7 +21,6 @@ public class LivroController {
 
     @RequestMapping(value = "/livros", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<LivroResponseDto>> getTodosLivros() {
-
         return ResponseEntity.ok(livroService.getTodosLivros());
     }
 

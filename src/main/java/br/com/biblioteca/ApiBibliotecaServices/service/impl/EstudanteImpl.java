@@ -1,5 +1,7 @@
 package br.com.biblioteca.ApiBibliotecaServices.service.impl;
 
+import br.com.biblioteca.ApiBibliotecaServices.coverter.EstudanteToEstudanteResponseDto;
+import br.com.biblioteca.ApiBibliotecaServices.coverter.ListEstudanteToListEstudanteResponseDto;
 import br.com.biblioteca.ApiBibliotecaServices.dto.EstudanteRequestDto;
 import br.com.biblioteca.ApiBibliotecaServices.dto.EstudanteResponseDto;
 import br.com.biblioteca.ApiBibliotecaServices.model.Estudante;
@@ -17,24 +19,21 @@ public class EstudanteImpl implements EstudanteService {
     @Autowired
     private EstudanteRepository estudanteRepository;
 
-    public List<Estudante> getTodosEstudantes() {
-        return estudanteRepository.findAll();
+    @Autowired
+    private ListEstudanteToListEstudanteResponseDto listEstudanteToListEstudanteResponseDto;
+
+    @Autowired
+    private EstudanteToEstudanteResponseDto estudanteToEstudanteResponseDto;
+
+    public List<EstudanteResponseDto> getTodosEstudantes() {
+        List<Estudante> estudantes = estudanteRepository.findAll();
+        return listEstudanteToListEstudanteResponseDto.convert(estudantes);
     }
 
     @Override
     public EstudanteResponseDto getEstudanteById(Long id) {
-
-        EstudanteResponseDto estudanteResponseDto = new EstudanteResponseDto();
         Optional<Estudante> estudante = estudanteRepository.findById(id);
-
-        if (estudante.isPresent()) {
-            estudanteResponseDto.setId(estudante.get().getId());
-            estudanteResponseDto.setNome(estudante.get().getNome());
-            estudanteResponseDto.setCurso(estudante.get().getCurso());
-            estudanteResponseDto.setNumeroMatricula(estudante.get().getNumeroMatricula());
-        }
-
-        return estudanteResponseDto;
+        return estudanteToEstudanteResponseDto.convert(estudante.get());
     }
 
     public EstudanteResponseDto addEstudante(EstudanteRequestDto estudanteRequestDto) {
@@ -46,13 +45,7 @@ public class EstudanteImpl implements EstudanteService {
 
         Estudante estudanteSaved = estudanteRepository.save(estudante);
 
-        EstudanteResponseDto estudanteResponseDto = new EstudanteResponseDto();
-        estudanteResponseDto.setId(estudanteSaved.getId());
-        estudanteResponseDto.setNome(estudanteSaved.getNome());
-        estudanteResponseDto.setCurso(estudanteSaved.getCurso());
-        estudanteResponseDto.setNumeroMatricula(estudanteSaved.getNumeroMatricula());
-
-        return estudanteResponseDto;
+        return estudanteToEstudanteResponseDto.convert(estudanteSaved);
     }
 
     public EstudanteResponseDto updateEstudante(Long id, EstudanteRequestDto estudanteRequestDto) {
@@ -65,13 +58,7 @@ public class EstudanteImpl implements EstudanteService {
 
         Estudante estudanteSaved = estudanteRepository.save(estudante);
 
-        EstudanteResponseDto estudanteResponseDto = new EstudanteResponseDto();
-        estudanteResponseDto.setId(estudanteSaved.getId());
-        estudanteResponseDto.setNome(estudanteSaved.getNome());
-        estudanteResponseDto.setCurso(estudanteSaved.getCurso());
-        estudanteResponseDto.setNumeroMatricula(estudanteSaved.getNumeroMatricula());
-
-        return estudanteResponseDto;
+        return estudanteToEstudanteResponseDto.convert(estudanteSaved);
     }
 
     public void deleteEstudante(Long id) {
