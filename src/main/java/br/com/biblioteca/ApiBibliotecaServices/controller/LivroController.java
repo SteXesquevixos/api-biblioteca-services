@@ -33,9 +33,7 @@ public class LivroController {
 
     @RequestMapping(value = "/livros", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LivroResponseDto> addLivro(@RequestBody LivroRequestDto livroRequestDto) {
-
-        LivroResponseDto livroResponseDto = livroService.addLivro(livroRequestDto);
-        return new ResponseEntity(livroResponseDto, HttpStatus.CREATED);
+        return new ResponseEntity(livroService.addLivro(livroRequestDto), HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/livros/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)

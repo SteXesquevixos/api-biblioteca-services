@@ -15,6 +15,4 @@ public class EstudanteRequestDto {
 
     private Long numeroMatricula;
 
-//    private LivroResponseDto livro;
-
 }

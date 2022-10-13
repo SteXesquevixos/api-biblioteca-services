@@ -7,6 +7,7 @@ import br.com.biblioteca.ApiBibliotecaServices.dto.LivroResponseDto;
 import br.com.biblioteca.ApiBibliotecaServices.model.Livro;
 import br.com.biblioteca.ApiBibliotecaServices.repository.LivroRepository;
 import br.com.biblioteca.ApiBibliotecaServices.service.LivroService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,9 @@ public class LivroImpl implements LivroService {
     @Autowired
     private LivroToLivroResponseDto livroToLivroResponseDto;
 
+    private ModelMapper modelMapper = new ModelMapper();
+
+
     public List<LivroResponseDto> getTodosLivros() {
         List<Livro> livros = livroRepository.findAll();
         return listLivroToListLivroResponseDto.convert(livros);
@@ -37,17 +41,8 @@ public class LivroImpl implements LivroService {
     }
 
     public LivroResponseDto addLivro(LivroRequestDto livroRequestDto) {
-
-        Livro livro = new Livro();
-        livro.setNome(livroRequestDto.getNome());
-        livro.setAutor(livroRequestDto.getAutor());
-        livro.setEdicao(livroRequestDto.getEdicao());
-        livro.setVolume(livroRequestDto.getVolume());
-        livro.setDescricao(livroRequestDto.getDescricao());
-//        livro.setEstudante(livroRequestDto.getEstudante());
-
+        Livro livro =  modelMapper.map(livroRequestDto, Livro.class);
         Livro livroSaved = livroRepository.save(livro);
-
         return livroToLivroResponseDto.convert(livroSaved);
     }
 

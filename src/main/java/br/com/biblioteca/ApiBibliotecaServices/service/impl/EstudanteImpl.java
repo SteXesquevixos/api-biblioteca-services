@@ -23,11 +23,11 @@ public class EstudanteImpl implements EstudanteService {
     @Autowired
     private ListEstudanteToListEstudanteResponseDto listEstudanteToListEstudanteResponseDto;
 
+    @Autowired
+    private EstudanteToEstudanteResponseDto estudanteToEstudanteResponseDto;
 
     private ModelMapper modelMapper = new ModelMapper();
 
-    @Autowired
-    private EstudanteToEstudanteResponseDto estudanteToEstudanteResponseDto;
 
     public List<EstudanteResponseDto> getTodosEstudantes() {
         List<Estudante> estudantes = estudanteRepository.findAll();
@@ -41,16 +41,8 @@ public class EstudanteImpl implements EstudanteService {
     }
 
     public EstudanteResponseDto addEstudante(EstudanteRequestDto estudanteRequestDto) {
-
-//        Estudante estudante = new Estudante();
-//        estudante.setNome(estudanteRequestDto.getNome());
-//        estudante.setCurso(estudanteRequestDto.getCurso());
-//        estudante.setNumeroMatricula(estudanteRequestDto.getNumeroMatricula());
-
         Estudante estudante =  modelMapper.map(estudanteRequestDto, Estudante.class);
-
         Estudante estudanteSaved = estudanteRepository.save(estudante);
-
         return estudanteToEstudanteResponseDto.convert(estudanteSaved);
     }
 

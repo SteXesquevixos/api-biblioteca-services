@@ -2,7 +2,6 @@ package br.com.biblioteca.ApiBibliotecaServices.service;
 
 import br.com.biblioteca.ApiBibliotecaServices.dto.EstudanteRequestDto;
 import br.com.biblioteca.ApiBibliotecaServices.dto.EstudanteResponseDto;
-import br.com.biblioteca.ApiBibliotecaServices.model.Estudante;
 
 import java.util.List;
 

@@ -36,7 +36,6 @@ public class Livro {
     private String descricao;
 
 //    @Column(name = "estudante_fk", nullable = false)
-
     @OneToOne
     @JoinColumn(name = "estudante_fk", referencedColumnName = "id")
     private Estudante estudante;

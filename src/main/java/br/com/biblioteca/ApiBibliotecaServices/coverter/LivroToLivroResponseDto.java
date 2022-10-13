@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class LivroToLivroResponseDto implements Converter<Livro, LivroResponseDto> {
 
+    @Autowired
+    private EstudanteToEstudanteResponseDto estudanteToEstudanteResponseDto;
+
     @Override
     public LivroResponseDto convert(Livro livro) {
         return LivroResponseDto.builder()
@@ -19,13 +22,14 @@ public class LivroToLivroResponseDto implements Converter<Livro, LivroResponseDt
                 .edicao(livro.getEdicao())
                 .volume(livro.getVolume())
                 .autor(livro.getAutor())
-                .estudante(EstudanteResponseDto.builder()
-                        .id(livro.getEstudante().getId())
-                        .nome(livro.getEstudante().getNome())
-                        .curso(livro.getEstudante().getCurso())
-                        .numeroMatricula(livro.getEstudante().getNumeroMatricula())
-                        .build()
-                )
+                .estudante(livro.getEstudante() != null ?
+                        EstudanteResponseDto.builder()
+                                .id(livro.getEstudante().getId())
+                                .nome(livro.getEstudante().getNome())
+                                .curso(livro.getEstudante().getCurso())
+                                .numeroMatricula(livro.getEstudante().getNumeroMatricula())
+                                .build()
+                        : null)
                 .build();
     }
 }

@@ -21,16 +21,16 @@ public class EstudanteToEstudanteResponseDto implements Converter<Estudante, Est
                 .nome(estudante.getNome())
                 .curso(estudante.getCurso())
                 .numeroMatricula(estudante.getNumeroMatricula())
-                .livro(estudante.getLivro() != null ?
-                        LivroResponseDto.builder()
-                                .id(estudante.getLivro().getId())
-                                .nome(estudante.getLivro().getNome())
-                                .descricao(estudante.getLivro().getDescricao())
-                                .edicao(estudante.getLivro().getEdicao())
-                                .volume(estudante.getLivro().getVolume())
-                                .autor(estudante.getLivro().getAutor())
-                                .build()
-                        : null)
+//                .livro(estudante.getLivro() != null ?
+//                        LivroResponseDto.builder()
+//                                .id(estudante.getLivro().getId())
+//                                .nome(estudante.getLivro().getNome())
+//                                .descricao(estudante.getLivro().getDescricao())
+//                                .edicao(estudante.getLivro().getEdicao())
+//                                .volume(estudante.getLivro().getVolume())
+//                                .autor(estudante.getLivro().getAutor())
+//                                .build()
+//                        : null)
                 .build();
     }
 }

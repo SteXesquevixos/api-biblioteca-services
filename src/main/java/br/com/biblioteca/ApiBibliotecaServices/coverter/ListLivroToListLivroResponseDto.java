@@ -1,8 +1,8 @@
 package br.com.biblioteca.ApiBibliotecaServices.coverter;
 
+import br.com.biblioteca.ApiBibliotecaServices.dto.EstudanteResponseDto;
 import br.com.biblioteca.ApiBibliotecaServices.dto.LivroResponseDto;
 import br.com.biblioteca.ApiBibliotecaServices.model.Livro;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -11,9 +11,6 @@ import java.util.stream.Collectors;
 
 @Component
 public class ListLivroToListLivroResponseDto implements Converter<List<Livro>, List<LivroResponseDto>> {
-
-    @Autowired
-    private EstudanteToEstudanteResponseDto estudanteToEstudanteResponseDto;
 
     @Override
     public List<LivroResponseDto> convert(List<Livro> livros) {
@@ -24,7 +21,14 @@ public class ListLivroToListLivroResponseDto implements Converter<List<Livro>, L
                         .edicao(livro.getEdicao())
                         .volume(livro.getVolume())
                         .descricao(livro.getDescricao())
-                        .estudante(estudanteToEstudanteResponseDto.convert(livro.getEstudante()))
+                        .estudante(livro.getEstudante() != null ?
+                                EstudanteResponseDto.builder()
+                                        .id(livro.getEstudante().getId())
+                                        .nome(livro.getEstudante().getNome())
+                                        .curso(livro.getEstudante().getCurso())
+                                        .numeroMatricula(livro.getEstudante().getNumeroMatricula())
+                                        .build()
+                                : null)
                         .build())
                 .collect(Collectors.toList());
     }
