@@ -19,6 +19,6 @@ public class LivroRequestDto {
 
     private String descricao;
 
-    private Long estudante;
+    private Long estudanteId;
 
 }
